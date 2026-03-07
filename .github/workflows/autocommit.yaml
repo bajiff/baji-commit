@@ -1,0 +1,53 @@
+name: Baji Auto Commit
+on:
+  push:
+    branches:
+      - master
+
+  schedule:
+    - cron: "0 0 * * *" # See https://crontab.guru/
+
+jobs:
+  auto_commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+         persist-credentials: false
+         fetch-depth: 0
+
+      - name: Modify last update and commit 7 times
+        run: |
+          git config --local user.email "mr.baji.smart@gmail.com"
+          git config --local user.name "bajiff"
+
+          for i in {1..7}; do
+            d=`date '+%Y-%m-%dT%H:%M:%SZ'`
+            echo "$d - Commit number $i" >> LAST_UPDATED
+
+            git add LAST_UPDATED
+
+            arr[0]="chore(bot): 😂 auto commit"
+            arr[1]="chore(bot): 😱 auto commit"
+            arr[2]="chore(bot): 👿 auto commit"
+            arr[3]="chore(bot): 💩 auto commit"
+            arr[4]="chore(bot): 🙏 auto commit"
+            arr[5]="chore(bot): 🙈 auto commit"
+            arr[6]="chore(bot): 🐐 auto commit"
+            arr[7]="chore(bot): 🤖 auto commit"
+            arr[8]="chore(bot): 🟩 auto commit"
+            arr[9]="chore(bot): 👻 auto commit"
+
+            rand=$[$RANDOM % ${#arr[@]}]
+
+            git commit -m "${arr[$rand]}"
+
+            sleep 60  # Wait 60 seconds between commits
+          done
+
+      - name: GitHub Push
+        uses: ad-m/github-push-action@v0.8.0
+        with:
+          force-with-lease: true
+          directory: "."
+          github_token: ${{ secrets.GITHUB_TOKEN }}
