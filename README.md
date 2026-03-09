@@ -23,15 +23,17 @@
 </table>
 
 <p>Langkah-langkah biar auto-commit</p>
+
 ```bash
 git clone https://github.com/bajiff/baji-commit.git
 cd baji-commit
 ```
 
-<p>Perbaiki autocommit.yaml menjadi email dan usernam github Anda</p>
+<p>Perbaiki autocommit.yaml menjadi email dan username github Anda, tempatnya ada di .github/workflows/</p>
+
 ```bash
 git config --local user.email "youremail@gmail.com"
 git config --local user.name "usernamegithub"
 ```
 
-<p>Selamat Anda berhasil auto-commit sendiri</p>
+<p>Selamat Anda berhasil tinggal nunggu esok hari nanti auto commit sendiri sebanyak 20 commit</p>
