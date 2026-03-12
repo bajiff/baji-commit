@@ -5,7 +5,7 @@ on:
       - main
 
   schedule:
-    - cron: "0 0 * * *" # See https://crontab.guru/
+    - cron: "17 1 * * *" # See https://crontab.guru/
 
 jobs:
   auto_commit:
